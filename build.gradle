@@ -27,9 +27,24 @@ application {
 }
 
 ext {
+    ktorV = "2.3.3"
     log4JVersion = "2.17.2"
+    hopliteVersion = "1.4.16"
 }
 
 dependencies {
+    implementation platform("io.ktor:ktor-bom:$ktorV")
+    implementation "io.ktor:ktor-server-core"
+    implementation "io.ktor:ktor-server-netty"
+    implementation "io.ktor:ktor-serialization-kotlinx-json"
+    implementation "io.ktor:ktor-server-default-headers"
+    implementation "io.ktor:ktor-server-compression"
+    implementation "io.ktor:ktor-server-content-negotiation"
+    implementation "io.ktor:ktor-server-call-logging"
+    implementation "io.ktor:ktor-server-status-pages"
+
     implementation "org.apache.logging.log4j:log4j-slf4j-impl:$log4JVersion"
+
+    implementation "com.sksamuel.hoplite:hoplite-core:$hopliteVersion"
+    implementation "com.sksamuel.hoplite:hoplite-yaml:$hopliteVersion"
 }

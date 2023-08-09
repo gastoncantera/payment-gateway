@@ -1,0 +1,12 @@
+app:
+  port: 8080
+  shutdown:
+    gracePeriod: 0
+    stopTimeout: 0
+    timeUnit: "SECONDS"
+
+http:
+  connectTimeoutMs: 1000
+  connectionRequestTimeoutMs: 1000
+  maxConnTotal: 100
+  maxConnPerRoute: 100
