@@ -18,6 +18,7 @@ object GatewaysProvider {
     data class AdyenConfiguration(
         val url: String,
         val apiKey: String,
+        var apiVersion: String,
         val merchantAccount: String
     )
 

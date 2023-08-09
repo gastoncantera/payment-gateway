@@ -12,6 +12,7 @@ http:
   maxConnPerRoute: 100
 
 adyen:
-  url: "https://checkout-test.adyen.com/v70"
+  url: "https://checkout-test.adyen.com"
   apiKey: ${ADYEN_API_KEY}
+  apiVersion: "v70"
   merchantAccount: ${ADYEN_MERCHANT_ACCOUNT}
