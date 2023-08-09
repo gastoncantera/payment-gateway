@@ -1,9 +1,13 @@
 package org.example
 
-fun main(args: Array<String>) {
-    println("Hello World!")
+import org.example.modules.Banner
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun main() {
+    val logger: Logger = LoggerFactory.getLogger("Main")
+
+    println(Banner.TEXT)
+
+    logger.info("Starting main application ...")
 }
