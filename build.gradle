@@ -30,10 +30,13 @@ ext {
     ktorV = "2.3.3"
     log4JVersion = "2.17.2"
     hopliteVersion = "1.4.16"
+    adyenJavaApiLibrary = "21.0.0"
 }
 
 dependencies {
+    // Ktor
     implementation platform("io.ktor:ktor-bom:$ktorV")
+    // Ktor Server
     implementation "io.ktor:ktor-server-core"
     implementation "io.ktor:ktor-server-netty"
     implementation "io.ktor:ktor-serialization-kotlinx-json"
@@ -42,9 +45,18 @@ dependencies {
     implementation "io.ktor:ktor-server-content-negotiation"
     implementation "io.ktor:ktor-server-call-logging"
     implementation "io.ktor:ktor-server-status-pages"
+    // Ktor Client
+    implementation "io.ktor:ktor-client-core"
+    implementation "io.ktor:ktor-client-apache"
+    implementation "io.ktor:ktor-client-content-negotiation"
 
+    // Logger
     implementation "org.apache.logging.log4j:log4j-slf4j-impl:$log4JVersion"
 
+    // Config Loader
     implementation "com.sksamuel.hoplite:hoplite-core:$hopliteVersion"
     implementation "com.sksamuel.hoplite:hoplite-yaml:$hopliteVersion"
+
+    // Adyen API
+    implementation("com.adyen:adyen-java-api-library:$adyenJavaApiLibrary")
 }

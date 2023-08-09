@@ -10,7 +10,8 @@ object ConfigurationProvider {
 
     data class Configuration constructor(
         val app: HttpApiServer.AppConfig,
-        val http: GatewaysProvider.HttpEngineConfiguration
+        val http: GatewaysProvider.HttpEngineConfiguration,
+        val adyen: GatewaysProvider.AdyenConfiguration
     )
 
     val config: Configuration = ConfigLoader.Builder()

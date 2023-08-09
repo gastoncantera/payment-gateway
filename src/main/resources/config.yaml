@@ -10,3 +10,8 @@ http:
   connectionRequestTimeoutMs: 1000
   maxConnTotal: 100
   maxConnPerRoute: 100
+
+adyen:
+  url: "https://checkout-test.adyen.com/v70"
+  apiKey: ${ADYEN_API_KEY}
+  merchantAccount: ${ADYEN_MERCHANT_ACCOUNT}

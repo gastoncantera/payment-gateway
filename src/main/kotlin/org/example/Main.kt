@@ -3,6 +3,7 @@ package org.example
 import kotlinx.coroutines.runBlocking
 import org.apache.logging.log4j.LogManager
 import org.example.modules.Banner
+import org.example.modules.GatewaysProvider
 import org.example.modules.HttpDeliveryProvider.apiServer
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -29,6 +30,7 @@ object ShutdownHook : Thread() {
         runBlocking {
             logger.info("Stopping consumers...")
             apiServer.stop()
+            GatewaysProvider.closeClients()
             LogManager.shutdown()
         }
     }
