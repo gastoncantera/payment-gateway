@@ -31,6 +31,7 @@ ext {
     log4JVersion = "2.17.2"
     hopliteVersion = "1.4.16"
     adyenJavaApiLibrary = "21.0.0"
+    mockkV = "1.13.5"
 }
 
 dependencies {
@@ -59,4 +60,8 @@ dependencies {
 
     // Adyen API
     implementation("com.adyen:adyen-java-api-library:$adyenJavaApiLibrary")
+
+    // Test
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test"
+    testImplementation "io.mockk:mockk:$mockkV"
 }
