@@ -5,7 +5,6 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.util.pipeline.*
-import org.apache.http.HttpException
 import org.example.core.domain.action.GetPaymentMethods
 import org.example.core.domain.exception.PaymentProviderException
 import org.example.delivery.http.handler.Handler
