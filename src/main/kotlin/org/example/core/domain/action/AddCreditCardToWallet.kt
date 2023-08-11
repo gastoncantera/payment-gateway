@@ -6,6 +6,14 @@ import org.example.core.domain.infrastructure.repository.CreditCardWalletReposit
 class AddCreditCardToWallet(
     private val creditCardWalletRepository: CreditCardWalletRepository
 ) {
-    operator fun invoke(walletID: String, cardID: String, cardDetails: CardDetails) =
-        creditCardWalletRepository.put(walletID, cardID, cardDetails)
+    operator fun invoke(actionData: ActionData) =
+        with(actionData) {
+            creditCardWalletRepository.put(walletId, cardId, cardDetails)
+        }
+
+    data class ActionData(
+        val walletId: String,
+        val cardId: String,
+        val cardDetails: CardDetails
+    )
 }

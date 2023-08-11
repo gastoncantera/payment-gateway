@@ -6,6 +6,7 @@ This microservice serves a tiny and embarrassingly insecure payment gateway syst
 ## How to use
 
 ### Setup
+This project requires Java 11 (or higher) JDK installed.
 
 #### Run Tests
 First, ensure all tests are passing. Execute the following:
