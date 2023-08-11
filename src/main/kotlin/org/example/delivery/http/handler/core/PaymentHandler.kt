@@ -13,7 +13,7 @@ class PaymentHandler(private val getPaymentMethods: GetPaymentMethods) : Handler
 
     override fun routing(a: Application) {
         a.routing {
-            get("/paymentMethods") { handleGetPaymentMethods() }
+            get("/payment/methods") { handleGetPaymentMethods() }
         }
     }
 

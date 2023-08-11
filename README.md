@@ -27,7 +27,7 @@ curl localhost:8080/status
 ```
 You can also try end-to-end connectivity with Adyen by retrieving the allowed payment methods:
 ```
-curl localhost:8080/paymentMethods
+curl localhost:8080/payment/methods
 ```
 
 ## Architecture and Design
