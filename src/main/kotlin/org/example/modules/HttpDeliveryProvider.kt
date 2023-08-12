@@ -22,7 +22,7 @@ object HttpDeliveryProvider {
     }
 
     private val paymentHandler by lazy {
-        PaymentHandler(getPaymentMethods)
+        PaymentHandler(getPaymentMethods, makeCreditCardPayment)
     }
 
     private val walletHandler by lazy {

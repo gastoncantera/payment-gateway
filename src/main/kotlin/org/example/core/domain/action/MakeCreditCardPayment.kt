@@ -7,6 +7,13 @@ import org.example.core.domain.infrastructure.service.PaymentService
 class MakeCreditCardPayment(
     private val paymentService: PaymentService
 ) {
-    suspend operator fun invoke(cardDetails: CardDetails, amount: Amount) =
-        paymentService.creditCardPayment(cardDetails, amount)
+    suspend operator fun invoke(actionData: ActionData) =
+        with(actionData) {
+            paymentService.creditCardPayment(cardDetails, amount)
+        }
+
+    data class ActionData(
+        val cardDetails: CardDetails,
+        val amount: Amount
+    )
 }

@@ -15,12 +15,12 @@ class GetPaymentMethodsTest {
 
     @Test
     fun `should call getPaymentMethods from service`() = runTest {
-        whenGetPaymentMethodsActionIsInvoked()
+        whenActionIsInvoked()
 
         thenServiceGetPaymentMethodsIsCalled()
     }
 
-    private suspend fun whenGetPaymentMethodsActionIsInvoked() {
+    private suspend fun whenActionIsInvoked() {
         action()
     }
 

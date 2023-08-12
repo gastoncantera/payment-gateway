@@ -17,13 +17,13 @@ class MakeCreditCardPaymentTest {
 
     @Test
     fun `should call creditCardPayment from service`() = runTest {
-        whenMakeCreditCardPaymentIsInvoked()
+        whenActionIsInvoked()
 
         thenServiceCreditCardPaymentIsCalled()
     }
 
-    private suspend fun whenMakeCreditCardPaymentIsInvoked() {
-        action(CARD_DETAILS, AMOUNT)
+    private suspend fun whenActionIsInvoked() {
+        action(ACTION_DATA)
     }
 
     private fun thenServiceCreditCardPaymentIsCalled() {
@@ -39,5 +39,6 @@ class MakeCreditCardPaymentTest {
             .encryptedSecurityCode("test_737")
         val AMOUNT: Amount = Amount()
             .currency("EUR").value(1000)
+        var ACTION_DATA = MakeCreditCardPayment.ActionData(CARD_DETAILS, AMOUNT)
     }
 }
