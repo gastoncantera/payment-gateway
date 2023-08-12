@@ -4,13 +4,13 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.example.core.domain.infrastructure.service.PaymentService
+import org.example.core.domain.infrastructure.service.AdyenPaymentService
 import kotlin.test.Test
 
 @ExperimentalCoroutinesApi
 class GetPaymentMethodsTest {
 
-    private val service: PaymentService = mockk(relaxed = true)
+    private val service: AdyenPaymentService = mockk(relaxed = true)
     private val action = GetPaymentMethods(service)
 
     @Test

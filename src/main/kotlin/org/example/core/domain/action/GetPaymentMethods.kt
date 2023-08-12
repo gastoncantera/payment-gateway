@@ -1,9 +1,9 @@
 package org.example.core.domain.action
 
-import org.example.core.domain.infrastructure.service.PaymentService
+import org.example.core.domain.infrastructure.service.AdyenPaymentService
 
 class GetPaymentMethods(
-    private val paymentService: PaymentService
+    private val adyenPaymentService: AdyenPaymentService
 ) {
-    suspend operator fun invoke(): String = paymentService.getPaymentMethods().toJson()
+    suspend operator fun invoke(): String = adyenPaymentService.getPaymentMethods().toJson()
 }

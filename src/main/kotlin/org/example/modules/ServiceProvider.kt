@@ -5,7 +5,7 @@ import org.example.modules.GatewaysProvider.adyenHttpClient
 
 object ServiceProvider {
 
-    val paymentsService by lazy {
+    val adyenPaymentsService by lazy {
         HttpAdyenPaymentService(adyenHttpClient)
     }
 }

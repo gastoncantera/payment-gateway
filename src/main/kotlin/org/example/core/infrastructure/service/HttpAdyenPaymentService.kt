@@ -6,14 +6,14 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import org.example.core.domain.exception.PaymentProviderException
-import org.example.core.domain.infrastructure.service.PaymentService
+import org.example.core.domain.infrastructure.service.AdyenPaymentService
 import org.example.modules.ConfigurationProvider.config
 import org.slf4j.LoggerFactory
 import java.util.*
 
 class HttpAdyenPaymentService(
     private val httpClient: HttpClient
-) : PaymentService {
+) : AdyenPaymentService {
 
     private val logger = LoggerFactory.getLogger(HttpAdyenPaymentService::class.java)
 

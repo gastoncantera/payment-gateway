@@ -5,7 +5,7 @@ import com.adyen.model.checkout.CardDetails
 import com.adyen.model.checkout.PaymentMethodsResponse
 import com.adyen.model.checkout.PaymentResponse
 
-interface PaymentService {
+interface AdyenPaymentService {
     suspend fun getPaymentMethods(): PaymentMethodsResponse
     suspend fun creditCardPayment(cardDetails: CardDetails, amount: Amount): PaymentResponse
 }

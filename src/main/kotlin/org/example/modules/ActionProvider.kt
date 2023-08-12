@@ -5,16 +5,16 @@ import org.example.core.domain.action.GetPaymentMethods
 import org.example.core.domain.action.DirectCreditCardPayment
 import org.example.core.domain.action.wallet.WalletCreditCardPayment
 import org.example.modules.RepositoryProvider.creditCardWalletRepository
-import org.example.modules.ServiceProvider.paymentsService
+import org.example.modules.ServiceProvider.adyenPaymentsService
 
 object ActionProvider {
 
     val getPaymentMethods by lazy {
-        GetPaymentMethods(paymentsService)
+        GetPaymentMethods(adyenPaymentsService)
     }
 
     val directCreditCardPayment by lazy {
-        DirectCreditCardPayment(paymentsService)
+        DirectCreditCardPayment(adyenPaymentsService)
     }
 
     val addCreditCardToWallet by lazy {
@@ -22,6 +22,6 @@ object ActionProvider {
     }
 
     val walletCreditCardPayment by lazy {
-        WalletCreditCardPayment(creditCardWalletRepository, paymentsService)
+        WalletCreditCardPayment(creditCardWalletRepository, adyenPaymentsService)
     }
 }
