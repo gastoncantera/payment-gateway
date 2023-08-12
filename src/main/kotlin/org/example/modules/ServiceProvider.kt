@@ -1,11 +1,11 @@
 package org.example.modules
 
-import org.example.core.infrastructure.service.AdyenPaymentService
-import org.example.modules.GatewaysProvider.adyenClient
+import org.example.core.infrastructure.service.HttpAdyenPaymentService
+import org.example.modules.GatewaysProvider.adyenHttpClient
 
 object ServiceProvider {
 
     val paymentsService by lazy {
-        AdyenPaymentService(adyenClient)
+        HttpAdyenPaymentService(adyenHttpClient)
     }
 }

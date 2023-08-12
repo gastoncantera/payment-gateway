@@ -11,11 +11,11 @@ import org.example.modules.ConfigurationProvider.config
 import org.slf4j.LoggerFactory
 import java.util.*
 
-class AdyenPaymentService(
+class HttpAdyenPaymentService(
     private val httpClient: HttpClient
 ) : PaymentService {
 
-    private val logger = LoggerFactory.getLogger(AdyenPaymentService::class.java)
+    private val logger = LoggerFactory.getLogger(HttpAdyenPaymentService::class.java)
 
     override suspend fun getPaymentMethods(): String {
         val paymentMethodsRequest = PaymentMethodsRequest()

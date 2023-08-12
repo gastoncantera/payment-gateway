@@ -7,10 +7,10 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.util.pipeline.*
-import org.example.core.domain.action.AddCreditCardToWallet
+import org.example.core.domain.action.wallet.AddCreditCardToWallet
 import org.example.core.domain.exception.WalletException
 import org.example.delivery.http.handler.Handler
-import org.example.delivery.http.handler.core.representation.WalletRequest
+import org.example.delivery.http.handler.core.representation.AddToWalletRequest
 
 class WalletHandler(private val addCreditCardToWallet: AddCreditCardToWallet) : Handler {
 
@@ -21,7 +21,7 @@ class WalletHandler(private val addCreditCardToWallet: AddCreditCardToWallet) : 
     }
 
     private suspend fun PipelineContext<Unit, ApplicationCall>.handleAddCreditCardToWallet() {
-        val content = call.receive<WalletRequest>()
+        val content = call.receive<AddToWalletRequest>()
         try {
             addCreditCardToWallet(
                 AddCreditCardToWallet.ActionData(

@@ -1,8 +1,8 @@
 package org.example.modules
 
-import org.example.core.domain.action.AddCreditCardToWallet
+import org.example.core.domain.action.wallet.AddCreditCardToWallet
 import org.example.core.domain.action.GetPaymentMethods
-import org.example.core.domain.action.MakeCreditCardPayment
+import org.example.core.domain.action.DirectCreditCardPayment
 import org.example.modules.RepositoryProvider.creditCardWalletRepository
 import org.example.modules.ServiceProvider.paymentsService
 
@@ -16,7 +16,7 @@ object ActionProvider {
         GetPaymentMethods(paymentsService)
     }
 
-    val makeCreditCardPayment by lazy {
-        MakeCreditCardPayment(paymentsService)
+    val directCreditCardPayment by lazy {
+        DirectCreditCardPayment(paymentsService)
     }
 }

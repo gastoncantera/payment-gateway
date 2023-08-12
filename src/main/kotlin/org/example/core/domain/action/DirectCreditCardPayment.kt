@@ -4,7 +4,7 @@ import com.adyen.model.checkout.Amount
 import com.adyen.model.checkout.CardDetails
 import org.example.core.domain.infrastructure.service.PaymentService
 
-class MakeCreditCardPayment(
+class DirectCreditCardPayment(
     private val paymentService: PaymentService
 ) {
     suspend operator fun invoke(actionData: ActionData) =

@@ -22,7 +22,7 @@ object GatewaysProvider {
         val merchantAccount: String
     )
 
-    val adyenClient by lazy {
+    val adyenHttpClient by lazy {
         ClientFactory.makeClient(ClientFactory.Config(
             baseUrl = config.adyen.url,
             connectTimeoutMs = config.http.connectTimeoutMs,
@@ -34,7 +34,7 @@ object GatewaysProvider {
 
     fun closeClients() {
         logger.info("Stopping http clients")
-        adyenClient.closeWithEngine()
+        adyenHttpClient.closeWithEngine()
         logger.info("Http clients stopped")
     }
 }

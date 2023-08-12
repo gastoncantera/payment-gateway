@@ -9,21 +9,20 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.util.pipeline.*
 import org.example.core.domain.action.GetPaymentMethods
-import org.example.core.domain.action.MakeCreditCardPayment
+import org.example.core.domain.action.DirectCreditCardPayment
 import org.example.core.domain.exception.PaymentProviderException
 import org.example.delivery.http.handler.Handler
-import org.example.delivery.http.handler.core.representation.PaymentRequest
-import org.example.delivery.http.handler.core.representation.WalletRequest
+import org.example.delivery.http.handler.core.representation.DirectPaymentRequest
 
 class PaymentHandler(
     private val getPaymentMethods: GetPaymentMethods,
-    private val makeCreditCardPayment: MakeCreditCardPayment
+    private val directCreditCardPayment: DirectCreditCardPayment
 ) : Handler {
 
     override fun routing(a: Application) {
         a.routing {
             get("/payment/methods") { handleGetPaymentMethods() }
-            post("/payment/checkout") { handleMakeCreditCardPayment() }
+            post("/payment/checkout") { handleDirectCreditCardPayment() }
         }
     }
 
@@ -37,11 +36,11 @@ class PaymentHandler(
         }
     }
 
-    private suspend fun PipelineContext<Unit, ApplicationCall>.handleMakeCreditCardPayment() {
-        val content = call.receive<PaymentRequest>()
+    private suspend fun PipelineContext<Unit, ApplicationCall>.handleDirectCreditCardPayment() {
+        val content = call.receive<DirectPaymentRequest>()
         try {
-            makeCreditCardPayment(
-                MakeCreditCardPayment.ActionData(
+            directCreditCardPayment(
+                DirectCreditCardPayment.ActionData(
                     CardDetails()
                         .holderName(content.cardDetails.holderName)
                         .encryptedCardNumber("test_" + content.cardDetails.cardNumber)

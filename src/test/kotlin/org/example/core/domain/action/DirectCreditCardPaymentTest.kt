@@ -10,10 +10,10 @@ import org.example.core.domain.infrastructure.service.PaymentService
 import kotlin.test.Test
 
 @ExperimentalCoroutinesApi
-class MakeCreditCardPaymentTest {
+class DirectCreditCardPaymentTest {
 
     private val service: PaymentService = mockk(relaxed = true)
-    private val action = MakeCreditCardPayment(service)
+    private val action = DirectCreditCardPayment(service)
 
     @Test
     fun `should call creditCardPayment from service`() = runTest {
@@ -39,6 +39,6 @@ class MakeCreditCardPaymentTest {
             .encryptedSecurityCode("test_737")
         val AMOUNT: Amount = Amount()
             .currency("EUR").value(1000)
-        var ACTION_DATA = MakeCreditCardPayment.ActionData(CARD_DETAILS, AMOUNT)
+        var ACTION_DATA = DirectCreditCardPayment.ActionData(CARD_DETAILS, AMOUNT)
     }
 }
