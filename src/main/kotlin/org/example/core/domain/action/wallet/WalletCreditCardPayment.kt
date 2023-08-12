@@ -13,6 +13,7 @@ class WalletCreditCardPayment(
         with(actionData) {
             creditCardWalletRepository.get(walletId, cardId)?.let {
                 paymentService.creditCardPayment(it.encryptedSecurityCode(securityCode), amount)
+                    .resultCode.toString()
             } ?: throw WalletException("Could not find card details")
         }
 

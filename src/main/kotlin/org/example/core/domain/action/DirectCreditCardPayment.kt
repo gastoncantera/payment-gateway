@@ -10,6 +10,7 @@ class DirectCreditCardPayment(
     suspend operator fun invoke(actionData: ActionData) =
         with(actionData) {
             paymentService.creditCardPayment(cardDetails, amount)
+                .resultCode.toString()
         }
 
     data class ActionData(

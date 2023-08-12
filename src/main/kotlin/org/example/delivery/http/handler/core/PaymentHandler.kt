@@ -29,6 +29,7 @@ class PaymentHandler(
     private suspend fun PipelineContext<Unit, ApplicationCall>.handleGetPaymentMethods() {
         try {
             getPaymentMethods().let {
+                call.response.header("Content-Type", "application/json")
                 call.respond(HttpStatusCode.OK, it)
             }
         } catch (e: PaymentProviderException) {

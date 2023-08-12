@@ -17,7 +17,7 @@ class HttpAdyenPaymentService(
 
     private val logger = LoggerFactory.getLogger(HttpAdyenPaymentService::class.java)
 
-    override suspend fun getPaymentMethods(): String {
+    override suspend fun getPaymentMethods(): PaymentMethodsResponse {
         val paymentMethodsRequest = PaymentMethodsRequest()
             .merchantAccount(config.adyen.merchantAccount)
 
@@ -28,7 +28,7 @@ class HttpAdyenPaymentService(
         }
 
         when (httpResponse.status.isSuccess()) {
-            true -> return httpResponse.body<String>()
+            true -> return PaymentMethodsResponse.fromJson(httpResponse.body<String>())
             else -> {
                 logger.error("Invalid Adyen Response = {}", httpResponse)
                 throw PaymentProviderException("Invalid status response: " + httpResponse.status.toString())
@@ -36,7 +36,7 @@ class HttpAdyenPaymentService(
         }
     }
 
-    override suspend fun creditCardPayment(cardDetails: CardDetails, amount: Amount): String {
+    override suspend fun creditCardPayment(cardDetails: CardDetails, amount: Amount): PaymentResponse {
         val paymentRequest = PaymentRequest()
             .merchantAccount(config.adyen.merchantAccount)
             .returnUrl("")
@@ -51,7 +51,7 @@ class HttpAdyenPaymentService(
         }
 
         when (httpResponse.status.isSuccess()) {
-            true -> return httpResponse.body<String>()
+            true -> return PaymentResponse.fromJson(httpResponse.body<String>())
             else -> {
                 logger.error("Invalid Adyen Response = {}", httpResponse)
                 throw PaymentProviderException("Invalid status response: " + httpResponse.status.toString())
