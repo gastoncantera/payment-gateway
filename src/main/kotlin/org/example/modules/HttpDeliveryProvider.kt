@@ -8,6 +8,7 @@ import org.example.delivery.http.handler.core.WalletHandler
 import org.example.modules.ActionProvider.addCreditCardToWallet
 import org.example.modules.ActionProvider.getPaymentMethods
 import org.example.modules.ActionProvider.directCreditCardPayment
+import org.example.modules.ActionProvider.walletCreditCardPayment
 import org.example.modules.ConfigurationProvider.config
 
 object HttpDeliveryProvider {
@@ -25,7 +26,7 @@ object HttpDeliveryProvider {
     }
 
     private val walletHandler by lazy {
-        WalletHandler(addCreditCardToWallet)
+        WalletHandler(addCreditCardToWallet, walletCreditCardPayment)
     }
 
     val apiServer by lazy {
