@@ -1,5 +1,8 @@
 package org.example.modules
 
+import com.adyen.Client
+import com.adyen.enums.Environment
+import com.adyen.service.checkout.PaymentsApi
 import org.example.core.infrastructure.http.ClientFactory
 import org.example.core.infrastructure.http.ClientFactory.closeWithEngine
 import org.example.modules.ConfigurationProvider.config
@@ -21,6 +24,10 @@ object GatewaysProvider {
         var apiVersion: String,
         val merchantAccount: String
     )
+
+    val adyenApiClient by lazy {
+        PaymentsApi(Client(config.adyen.apiKey, Environment.TEST))
+    }
 
     val adyenHttpClient by lazy {
         ClientFactory.makeClient(ClientFactory.Config(
