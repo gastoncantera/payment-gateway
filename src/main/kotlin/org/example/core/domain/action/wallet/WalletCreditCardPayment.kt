@@ -4,16 +4,22 @@ import com.adyen.model.checkout.Amount
 import org.example.core.domain.exception.WalletException
 import org.example.core.domain.infrastructure.repository.CreditCardWalletRepository
 import org.example.core.domain.infrastructure.service.AdyenPaymentService
+import org.example.core.domain.model.ultis.Utils.toSafeString
+import org.slf4j.LoggerFactory
 
 class WalletCreditCardPayment(
     private val creditCardWalletRepository: CreditCardWalletRepository,
     private val adyenPaymentService: AdyenPaymentService
 ) {
-    suspend operator fun invoke(actionData: ActionData) =
+    private val logger = LoggerFactory.getLogger(WalletCreditCardPayment::class.java)
+
+    suspend operator fun invoke(actionData: ActionData): String =
         with(actionData) {
-            creditCardWalletRepository.get(walletId, cardId)?.let {
-                adyenPaymentService.creditCardPayment(it.encryptedSecurityCode(securityCode), amount)
-                    .resultCode.toString()
+            creditCardWalletRepository.get(walletId, cardId)?.let { cardDetails ->
+                adyenPaymentService.creditCardPayment(cardDetails.encryptedSecurityCode(securityCode), amount).let {
+                    logger.info("WALLET TRX: {}", it.toSafeString(cardDetails))
+                    it.resultCode.toString()
+                }
             } ?: throw WalletException("Could not find card details")
         }
 

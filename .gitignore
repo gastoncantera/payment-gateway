@@ -4,3 +4,4 @@
 /.gradle/
 /out/
 /.java-version
+transaction.log*

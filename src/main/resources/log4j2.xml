@@ -4,12 +4,23 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%c{1}:%L] - %msg%n"/>
         </Console>
+        <RollingFile name="fileAppender" fileName="./transaction.log" filePattern="./log-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
     </appenders>
 
     <loggers>
-        <logger name="org.example" level="INFO"/>
         <root level="INFO">
             <appender-ref ref="Console"/>
         </root>
+        <logger name="org.example.core.domain.action.DirectCreditCardPayment" level="INFO">
+            <AppenderRef ref="fileAppender"/>
+        </logger>
+        <logger name="org.example.core.domain.action.wallet.WalletCreditCardPayment" level="INFO">
+            <AppenderRef ref="fileAppender"/>
+        </logger>
     </loggers>
 </configuration>
