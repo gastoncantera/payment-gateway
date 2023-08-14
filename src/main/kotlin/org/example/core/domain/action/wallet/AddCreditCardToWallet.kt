@@ -3,7 +3,7 @@ package org.example.core.domain.action.wallet
 import com.adyen.model.checkout.CardDetails
 import org.example.core.domain.exception.CardDetailsException
 import org.example.core.domain.infrastructure.repository.CreditCardWalletRepository
-import org.example.core.domain.model.ultis.Utils.isValid
+import org.example.core.domain.model.AdyenModelExtensions.isValid
 
 class AddCreditCardToWallet(
     private val creditCardWalletRepository: CreditCardWalletRepository

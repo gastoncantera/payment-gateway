@@ -1,12 +1,13 @@
-package org.example.core.domain.model.ultis
+package org.example.core.domain.model
 
 import com.adyen.model.checkout.CardDetails
 import com.adyen.model.checkout.PaymentResponse
+import org.example.core.domain.model.ultis.LuhnValidator
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-object Utils {
+object AdyenModelExtensions {
     fun CardDetails.isValid(): Boolean {
         val expiryMonth = this.encryptedExpiryMonth.removePrefix("test_")
         val expiryYear = this.encryptedExpiryYear.removePrefix("test_")

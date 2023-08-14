@@ -4,7 +4,7 @@ import com.adyen.model.checkout.Amount
 import org.example.core.domain.exception.WalletException
 import org.example.core.domain.infrastructure.repository.CreditCardWalletRepository
 import org.example.core.domain.infrastructure.service.AdyenPaymentService
-import org.example.core.domain.model.ultis.Utils.toSafeString
+import org.example.core.domain.model.AdyenModelExtensions.toSafeString
 import org.slf4j.LoggerFactory
 
 class WalletCreditCardPayment(

@@ -4,8 +4,8 @@ import com.adyen.model.checkout.Amount
 import com.adyen.model.checkout.CardDetails
 import org.example.core.domain.exception.CardDetailsException
 import org.example.core.domain.infrastructure.service.AdyenPaymentService
-import org.example.core.domain.model.ultis.Utils.isValid
-import org.example.core.domain.model.ultis.Utils.toSafeString
+import org.example.core.domain.model.AdyenModelExtensions.isValid
+import org.example.core.domain.model.AdyenModelExtensions.toSafeString
 import org.slf4j.LoggerFactory
 
 class DirectCreditCardPayment(
