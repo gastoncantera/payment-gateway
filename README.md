@@ -98,7 +98,7 @@ curl -X POST "localhost:8080/payment/checkout" -H 'content-type: application/jso
 ```
 
 ### Transaction Logs
-Logs to track credit card payment attempts and their results are stored in *transaction.log*
+Logs to track credit card payment attempts and their results are stored in _transaction.log_
 ```
 [INFO ] 2023-08-14 12:36:49.218 - WALLET TRX: CARD: ************1111 | BRAND: visa | AMOUNT: EUR 1000 | RESULT: Authorised (AUTHORISED)
 [INFO ] 2023-08-14 12:37:01.020 - WALLET TRX: CARD: ************1111 | BRAND:  | AMOUNT:  | RESULT: Refused (DECLINED CVC Incorrect)
@@ -109,12 +109,17 @@ Logs to track credit card payment attempts and their results are stored in *tran
 ## Architecture and Design
 
 ### Design decisions
-- Wallets and credit card details are stored in memory.
-- There is no validation about wallet ID or card ID.
+- There is no Wallet maintenance endpoints.
+  - The Wallet will be created by adding a Credit Card details.
+  - Wallet ID and Card ID are simple _Strings_ in this MVP.
+- Wallets and Credit Card details are stored in memory.
+  - This can be improved by implementing the _CreditCardWalletRepository_ interface with a database with encryption at rest.
 - There are 2 implementations for Adyen API connectivity:
-  - ApiAdyenPaymentService: Based on Adyen Java API Library (default)
-  - HttpAdyenPaymentService: Based on HTTP Adyen Endpoints
+  - _ApiAdyenPaymentService_: Based on Adyen Java API Library (default)
+  - _HttpAdyenPaymentService_: Based on HTTP Adyen Endpoints
 - This project was created based on [Interaction-Driven Design](https://www.codurance.com/publications/2017/12/08/introducing-idd) approach.
+  - This includes packages structuring in a non-conventional way.
+  - A design style that helps create maintainable and domain-oriented software.
 
 ### Technologies
 - Kotlin 1.9.0 (chaining Java 11 bytecode)
