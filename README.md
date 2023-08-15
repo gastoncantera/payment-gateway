@@ -109,6 +109,7 @@ Logs to track credit card payment attempts and their results are stored in _tran
 ## Architecture and Design
 
 ### Design decisions
+- Only [direct flow](https://docs.adyen.com/api-explorer/Checkout/70/post/payments) card payments was implemented. In this case the response includes a _pspReference_ and a _resultCode_ with the payment result, for example _Authorised_ or _Refused_.
 - There is no Wallet maintenance endpoints.
   - The Wallet will be created by adding a Credit Card details.
   - Wallet ID and Card ID are simple _Strings_ in this MVP.
