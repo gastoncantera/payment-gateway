@@ -2,8 +2,8 @@ package org.example.core.domain.action.wallet
 
 import com.adyen.model.checkout.Amount
 import com.adyen.model.checkout.CardDetails
-import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -45,11 +45,11 @@ class WalletCreditCardPaymentTest {
     }
 
     private fun givenCardDetailsInRepository() {
-        coEvery { repository.get(WALLET_ID, CARD_ID) } returns CARD_DETAILS
+        every { repository.get(WALLET_ID, CARD_ID) } returns CARD_DETAILS
     }
 
     private fun givenNoCardDetailsInRepository() {
-        coEvery { repository.get(WALLET_ID, CARD_ID) } returns null
+        every { repository.get(WALLET_ID, CARD_ID) } returns null
     }
 
     private suspend fun whenActionIsInvoked() {
@@ -57,7 +57,7 @@ class WalletCreditCardPaymentTest {
     }
 
     private fun thenServiceCreditCardPaymentIsCalled() {
-        coVerify(exactly = 1) { service.creditCardPayment(CARD_DETAILS, AMOUNT) }
+        coVerify(exactly = 1) { service.creditCardPayment(CARD_DETAILS_WITH_CSC, AMOUNT) }
     }
 
     private fun thenActionThrowsWalletException() {
@@ -76,6 +76,7 @@ class WalletCreditCardPaymentTest {
             .encryptedCardNumber("test_4111111111111111")
             .encryptedExpiryMonth("test_03")
             .encryptedExpiryYear("test_2030")
-            .encryptedSecurityCode(SECURITY_CODE)
+            .encryptedSecurityCode(null)
+        val CARD_DETAILS_WITH_CSC: CardDetails = CARD_DETAILS.encryptedSecurityCode(SECURITY_CODE)
     }
 }

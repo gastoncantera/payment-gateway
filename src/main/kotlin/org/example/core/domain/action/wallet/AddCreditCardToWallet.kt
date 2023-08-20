@@ -11,7 +11,7 @@ class AddCreditCardToWallet(
     operator fun invoke(actionData: ActionData) =
         with(actionData) {
             if (cardDetails.isValid()) {
-                creditCardWalletRepository.put(walletId, cardId, cardDetails)
+                creditCardWalletRepository.put(walletId, cardId, cardDetails.encryptedSecurityCode(null))
             } else {
                 throw CardDetailsException("Invalid card details")
             }

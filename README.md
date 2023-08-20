@@ -46,7 +46,7 @@ The microservice exposes 5 endpoints:
 | POST   | /wallet/checkout  | Make a payment using a card from the wallet |
 
 ### Adding Credit Card to Wallet
-The card details will be validated and then stored in wallet.
+The card details will be validated and then stored in wallet. The card's security code will not be stored, it's only required for validation.
 Note that for this MVP, the **Wallet ID** and **Card ID** will be handled manually and if they don't exist, they will be created.
 ```
 curl -X POST "localhost:8080/wallet/add" -H 'content-type: application/json' -d '
@@ -109,7 +109,7 @@ Logs to track credit card payment attempts and their results are stored in _tran
 ## Architecture and Design
 
 ### Design decisions
-- Only [direct flow](https://docs.adyen.com/api-explorer/Checkout/70/post/payments) card payments was implemented. In this case the response includes a _pspReference_ and a _resultCode_ with the payment result, for example _Authorised_ or _Refused_.
+- Only [direct flow](https://docs.adyen.com/api-explorer/Checkout/70/post/payments) card payments were implemented. In this case the response includes a _pspReference_ and a _resultCode_ with the payment result, for example _Authorised_ or _Refused_.
 - There is no Wallet maintenance endpoints.
   - The Wallet will be created by adding a Credit Card details.
   - Wallet ID and Card ID are simple _Strings_ in this MVP.
